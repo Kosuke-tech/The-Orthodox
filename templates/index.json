@@ -49,6 +49,59 @@
         "show_text_below": false
       }
     },
+    "c_pick_up_DrxNwF": {
+      "type": "c_pick-up",
+      "blocks": {
+        "image_cJpz9Q": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        },
+        "image_79kMyM": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        },
+        "image_VkCA3P": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        },
+        "image_yFjB9g": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "image_cJpz9Q",
+        "image_79kMyM",
+        "image_VkCA3P",
+        "image_yFjB9g"
+      ],
+      "name": "カスタム：ピックアップ",
+      "settings": {
+        "title": "ピックアップ商品",
+        "sub_title": "PICK UP PRODUCTS",
+        "padding-top_pc": 96,
+        "padding-bottom_pc": 96,
+        "padding-top_sp": 64,
+        "padding-bottom_sp": 64,
+        "color_scheme": "scheme-1"
+      }
+    },
     "featured_collection_EYCKh6": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -81,6 +134,7 @@
   },
   "order": [
     "image_banner",
+    "c_pick_up_DrxNwF",
     "featured_collection_EYCKh6"
   ]
 }
