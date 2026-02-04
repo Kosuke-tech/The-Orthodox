@@ -16,18 +16,19 @@
   #shopify-section-{{ section.id }} {
     overflow: hidden;
   }
-  #shopify-section-{{ section.id }} .splide__track {
+  /* #shopify-section-{{ section.id }} .splide__track {
     overflow: visible;
-  }
+  } */
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} page-width">
   <div class="c-pick-up">
-    <div class="c-section-head c-pick-up__head">
-      {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
-    </div>
-
-    <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
+    <div class="c-pick-up__textarea--wrapper">
+      <div class="c-section-head c-pick-up__head">
+        {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
+      </div>
+      <div>{{ section.settings.textarea }}</div>
+      <button>ボタン</button>
       <div class="splide__arrows">
         <button class="splide__arrow splide__arrow--prev">
           <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Previous" width="20" height="20">
@@ -36,6 +37,9 @@
           <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Next" width="20" height="20">
         </button>
       </div>
+    </div>
+
+    <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
       <div class="splide__track">
         <ul class="splide__list">
           {% for block in section.blocks %}
@@ -46,7 +50,7 @@
                   <source srcset="{{ block.settings.image_sp | image_url: width: 800}}" media="(max-width: 750px)">
                 {% endif -%}
                 <img
-                  class="c-image"
+                  class="c-image c-pick-up__image"
                   src="{{ block.settings.image_pc | image_url: width: 1200 }}"
                   width="1200"
                   height="600"
@@ -70,9 +74,10 @@
       rewind: true,
       gap: {{settings.spacing_grid_horizontal}},
       perMove: 1,
-      focus: 'center',
+      focus: 0,
       omitEnd: true,
-      fixedWidth: 580,
+      fixedWidth: 300,
+      arrows: false,
       autoplay: false,
       breakpoints: {
         750: {
@@ -84,6 +89,14 @@
 
     var splide = new Splide( '.splide-{{section.id}}', splideOptions );
 
+    const customPrev = document.querySelector('.section-{{ section.id }}-padding .splide__arrow--prev');
+    const customNext = document.querySelector('.section-{{ section.id }}-padding .splide__arrow--next');
+
+    if (customPrev && customNext) {
+      customPrev.addEventListener('click', () => splide.go('<'));
+      customNext.addEventListener('click', () => splide.go('>'));
+    }
+
     splide.on('overflow', function(isOverflow) {
       splide.go(0);
       splide.options = {
@@ -91,7 +104,7 @@
         focus: isOverflow ? 'center' : undefined,
         drag: isOverflow,
         clones: isOverflow ? undefined : 0,
-        arrows: isOverflow
+        arrows: false
       };
     });
 
@@ -112,6 +125,7 @@
               focus: isOverflow ? 'center' : undefined,
               drag: isOverflow,
               clones: isOverflow ? undefined : 0,
+              arrows: false
             };
           });
 
@@ -150,6 +164,12 @@
       "id": "sub_title",
       "label": "サブ見出し",
       "default": "ピックアップ プロダクト"
+    },
+    {
+      "type": "textarea",
+      "id": "textarea",
+      "label": "テキストエリア",
+      "default": "テキストを入力してください。"
     },
     {
       "type": "header",

@@ -5,21 +5,108 @@
  * メモ：
  ================================================================================*/
 
-/* =============================
-   1. フォント・カラー・背景など
-================================ */
+/* -------------------------------
+   ピックアップセクション
+--------------------------------- */
+/* レイアウト */
 
+.c-pick-up {
+   display: flex;
+   gap: 30px;
+}
 
+.c-pick-up__textarea--wrapper {
+   flex: 0 0 350px;
+}
 
+.c-pick-up__content {
+   flex: 1;
+   min-width: 0;
+}
 
+.c-pick-up__image {
+   width: 350px;
+   height: auto;
+}
 
-/* =============================
-   2. セクション間の余白
-================================ */
+.c-pick-up .splide__track {
+   overflow: hidden !important;
+}
 
+/* 矢印 */
 
+.splide__arrow img {
+   place-content: center;
+}
 
+.splide__arrow--prev img {
+   transform: rotate(180deg);
+}
 
-/* =============================
-   3. レイアウトなど
-================================ */
+/* 矢印のボタン本体を「浮かせない」設定にする */
+.c-pick-up__textarea--wrapper .splide__arrow {
+   position: relative !important;
+   top: auto !important;
+   left: auto !important;
+   right: auto !important;
+   transform: none !important;
+   margin: 0;
+}
+
+/* 矢印の入れ物を横並びにする */
+.c-pick-up__textarea--wrapper .splide__arrows {
+   display: flex;
+   gap: 12px;
+   margin-top: 20px;
+}
+
+/* ページネーション */
+
+.c-pick-up .splide__pagination {
+   position: static;
+   margin-top: 24px;
+}
+
+.c-pick-up .splide__pagination__page {
+   width: 10px;
+   height: 10px;
+   opacity: 1;
+   background: #F5EDE7;
+   margin: 8px;
+}
+
+@media screen and (max-width: 750px) {
+   .c-pick-up .splide__pagination__page {
+      width: 8px;
+      height: 8px;
+      margin: 6px;
+   }
+}
+
+.c-pick-up .splide__pagination__page.is-active {
+   background: #434343;
+   transform: scale(1);
+   z-index: 1;
+}
+
+/* ------------------------------
+  ランキングセクション
+------------------------------*/
+/* ランキングバッジ */
+
+.c-card__price--ranking {
+   --color-foreground: 40, 35, 21 !important;
+   background: transparent;
+}
+
+@media screen and (max-width: 990px) {
+   .c-card__price--ranking {
+      padding: 0;
+      padding-left: 4px;
+   }
+
+   .c-card__price--ranking .price {
+      font-size: 16px;
+      letter-spacing: 0.64px;
+   }
+}
