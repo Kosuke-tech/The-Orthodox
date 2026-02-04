@@ -12,6 +12,13 @@
       padding-bottom: {{ section.settings.padding-bottom_pc }}px;
     }
   }
+
+  #shopify-section-{{ section.id }} {
+    overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .splide__track {
+    overflow: visible;
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} page-width">
@@ -22,8 +29,12 @@
 
     <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
       <div class="splide__arrows">
-        <button class="splide__arrow splide__arrow--prev">Prev</button>
-        <button class="splide__arrow splide__arrow--next">Next</button>
+        <button class="splide__arrow splide__arrow--prev">
+          <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Previous" width="20" height="20">
+        </button>
+        <button class="splide__arrow splide__arrow--next">
+          <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Next" width="20" height="20">
+        </button>
       </div>
       <div class="splide__track">
         <ul class="splide__list">
