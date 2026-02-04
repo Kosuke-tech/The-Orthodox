@@ -49,6 +49,54 @@
         "show_text_below": false
       }
     },
+    "image_with_text_TTH8RK": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_n6hAjh": {
+          "type": "heading",
+          "settings": {
+            "heading": "シンプルな服と生活。",
+            "heading_size": "h1"
+          }
+        },
+        "text_kjVk6e": {
+          "type": "text",
+          "settings": {
+            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
+            "text_style": "body"
+          }
+        },
+        "button_ypqmUa": {
+          "type": "button",
+          "settings": {
+            "button_label": "ボタンのラベル",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_n6hAjh",
+        "text_kjVk6e",
+        "button_ypqmUa"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/fv_sp.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "zoom-in",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
     "c_pick_up_DrxNwF": {
       "type": "c_pick-up",
       "blocks": {
@@ -95,6 +143,7 @@
       "settings": {
         "title": "ピックアップ商品",
         "sub_title": "PICK UP PRODUCTS",
+        "textarea": "人気商品をアピールしたり、割引やセールの情報を入力する。",
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
@@ -199,6 +248,7 @@
   },
   "order": [
     "image_banner",
+    "image_with_text_TTH8RK",
     "c_pick_up_DrxNwF",
     "featured_collection_EYCKh6",
     "c_ranking_collection_KJTErC"
