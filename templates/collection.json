@@ -1,5 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "c_pick_up_z7rLgJ": {
+      "type": "c_pick-up",
+      "blocks": {
+        "image_RTpnVk": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        },
+        "image_MKepm8": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        },
+        "image_Nn9fHM": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": "shopify://pages/contact"
+          }
+        },
+        "image_rQHKJW": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_sp": "shopify://shop_images/fv_sp.jpg",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_RTpnVk",
+        "image_MKepm8",
+        "image_Nn9fHM",
+        "image_rQHKJW"
+      ],
+      "name": "カスタム：ピックアップ",
+      "settings": {
+        "title": "PICK UP PRODUCTS",
+        "sub_title": "ピックアップ プロダクト",
+        "padding-top_pc": 0,
+        "padding-bottom_pc": 0,
+        "padding-top_sp": 0,
+        "padding-bottom_sp": 0,
+        "color_scheme": ""
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
@@ -13,6 +75,7 @@
       "settings": {
         "products_per_page": 16,
         "columns_desktop": 4,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
@@ -23,13 +86,13 @@
         "enable_filtering": true,
         "filter_type": "horizontal",
         "enable_sorting": true,
-        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 36
       }
     }
   },
   "order": [
+    "c_pick_up_z7rLgJ",
     "banner",
     "product-grid"
   ]

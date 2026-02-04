@@ -109,3 +109,25 @@
    transform: scale(1);
    z-index: 1;
 }
+
+/* ------------------------------
+  ランキングセクション
+------------------------------*/
+/* ランキングバッジ */
+
+.c-card__price--ranking {
+   --color-foreground: 40, 35, 21 !important;
+   background: transparent;
+}
+
+@media screen and (max-width: 990px) {
+   .c-card__price--ranking {
+      padding: 0;
+      padding-left: 4px;
+   }
+
+   .c-card__price--ranking .price {
+      font-size: 16px;
+      letter-spacing: 0.64px;
+   }
+}
