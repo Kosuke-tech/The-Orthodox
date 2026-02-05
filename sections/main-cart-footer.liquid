@@ -58,6 +58,8 @@
                   {%- endif -%}
                 </div>
 
+                <div id="free-shipping-message"></div>
+
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
                   <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
@@ -147,7 +149,7 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
-    },    
+    },
     {
       "type": "range",
       "id": "padding_top",
@@ -186,3 +188,33 @@
   ]
 }
 {% endschema %}
+
+<script>
+  function updateFreeShippingMessage() {
+    const FREE_SHIPPING = 30000;
+
+    fetch('/cart.js')
+      .then((response) => response.json())
+      .then((cart) => {
+        const cartTotal = cart.total_price / 100;
+        const amountLeft = FREE_SHIPPING - cartTotal;
+        const messageArea = document.getElementById('free-shipping-message');
+        if (!messageArea) return;
+        if (amountLeft > 0) {
+          messageArea.innerHTML = `あと<strong>${amountLeft.toLocaleString()}円</strong>で無料`;
+        } else {
+          messageArea.innerHTML = `<strong>送料無料です!</strong>`;
+        }
+      });
+  }
+  updateFreeShippingMessage();
+
+  // カートfooter監視（Ajaxカート対応）
+  const cartFooter = document.getElementById('main-cart-footer');
+  if (cartFooter) {
+    const observer = new MutationObserver(() => {
+      updateFreeShippingMessage();
+    });
+    observer.observe(cartFooter, { childList: true, subtree: true });
+  }
+</script>

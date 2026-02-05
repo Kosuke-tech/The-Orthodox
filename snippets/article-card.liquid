@@ -118,6 +118,14 @@
             <a href="{{ article.url }}" class="full-unstyled-link">
               {{ article.title | truncate: 50 | escape }}
             </a>
+            {% comment %} メタオブジェクトの表示 {% endcomment %}
+            {%- if article.metafields.custom.shinzyuku.value != blank -%}
+              {%- assign shop = article.metafields.custom.shinzyuku.value -%}
+              <div class="c-card__shop-info" style="font-size: 0.6em; line-height: 1.5;">
+                <p>TEL: {{ shop.tel }}</p>
+                <p>住所: {{ shop.address | newline_to_br }}</p>
+              </div>
+            {%- endif -%}
           </h3>
           <div class="article-card__info caption-with-letter-spacing h5">
             {%- if show_date -%}

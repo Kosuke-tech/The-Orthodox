@@ -82,8 +82,8 @@
           "type": "collapsible_row",
           "settings": {
             "heading": "送料について",
-            "icon": "check_mark",
-            "row_content": "",
+            "icon": "chat_bubble",
+            "row_content": "{{ product.metafields.custom.faq_1 | metafield_tag }}",
             "page": ""
           }
         },
@@ -92,7 +92,7 @@
           "settings": {
             "heading": "返品について",
             "icon": "check_mark",
-            "row_content": "",
+            "row_content": "<p>メタフィールド</p>",
             "page": ""
           }
         },
@@ -123,8 +123,8 @@
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 96,
+        "padding_bottom": 96
       }
     },
     "related-products": {
