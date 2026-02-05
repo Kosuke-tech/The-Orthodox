@@ -16,9 +16,6 @@
   #shopify-section-{{ section.id }} {
     overflow: hidden;
   }
-  /* #shopify-section-{{ section.id }} .splide__track {
-    overflow: visible;
-  } */
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} page-width">
@@ -28,7 +25,9 @@
         {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
       </div>
       <div>{{ section.settings.textarea }}</div>
-      <button>ボタン</button>
+      <button class="c-pick-up__textarea--button">
+        <a href="">もっと見る</a>
+      </button>
       <div class="splide__arrows">
         <button class="splide__arrow splide__arrow--prev">
           <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Previous" width="20" height="20">

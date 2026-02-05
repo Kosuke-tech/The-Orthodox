@@ -16,7 +16,7 @@
 }
 
 .c-pick-up__textarea--wrapper {
-   flex: 0 0 350px;
+   flex: 0 0 400px;
 }
 
 .c-pick-up__content {
@@ -26,7 +26,7 @@
 
 .c-pick-up__image {
    width: 350px;
-   height: auto;
+   height: 300px;
 }
 
 .c-pick-up .splide__track {
@@ -89,24 +89,17 @@
    z-index: 1;
 }
 
-/* ------------------------------
-  ランキングセクション
-------------------------------*/
-/* ランキングバッジ */
-
-.c-card__price--ranking {
-   --color-foreground: 40, 35, 21 !important;
-   background: transparent;
+.c-pick-up__textarea--wrapper .c-pick-up__textarea--button {
+   text-decoration: none;
+   background: none;
+   border-right: none;
+   border-top: none;
+   border-left: none;
+   /* color: #333333; */
+   border-bottom: 1px solid #333333;
 }
 
-@media screen and (max-width: 990px) {
-   .c-card__price--ranking {
-      padding: 0;
-      padding-left: 4px;
-   }
-
-   .c-card__price--ranking .price {
-      font-size: 16px;
-      letter-spacing: 0.64px;
-   }
+.c-pick-up__textarea--wrapper .c-pick-up__textarea--button a {
+   text-decoration: none;
+   color: #333333;
 }

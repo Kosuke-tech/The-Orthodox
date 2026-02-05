@@ -20,13 +20,29 @@
             "text": "スライダーを実装する。",
             "link": ""
           }
+        },
+        "announcement_WBnjXr": {
+          "type": "announcement",
+          "settings": {
+            "text": "送料10%オフ",
+            "link": ""
+          }
+        },
+        "announcement_UCLRwz": {
+          "type": "announcement",
+          "settings": {
+            "text": "ストアへようこそ",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "announcement_WBnjXr",
+        "announcement_UCLRwz"
       ],
       "settings": {
-        "auto_rotate": false,
+        "auto_rotate": true,
         "change_slides_speed": 5,
         "color_scheme": "scheme-1",
         "show_line_separator": true,
