@@ -12,8 +12,14 @@
 
 .c-pick-up {
    display: flex;
-   gap: 30px;
+   gap: 50px;
 }
+
+/* @media screen and (max-width: 1200px) {
+   .c-pick-up {
+      flex-direction: column;
+   }
+} */
 
 .c-pick-up__textarea--wrapper {
    flex: 0 0 350px;
@@ -24,8 +30,15 @@
    min-width: 0;
 }
 
+/* 左側のテキストエリア */
+
+.c-pick-up__text {
+   margin-top: 30px;
+   font-size: 1.25rem;
+}
+
 .c-pick-up__image {
-   width: 350px;
+   width: 400px;
    height: 300px;
 }
 
@@ -34,14 +47,6 @@
 }
 
 /* 矢印 */
-
-.splide__arrow img {
-   place-content: center;
-}
-
-.splide__arrow--prev img {
-   transform: rotate(180deg);
-}
 
 /* 矢印のボタン本体を「浮かせない」設定にする */
 .c-pick-up__textarea--wrapper .splide__arrow {
@@ -56,8 +61,26 @@
 /* 矢印の入れ物を横並びにする */
 .c-pick-up__textarea--wrapper .splide__arrows {
    display: flex;
-   gap: 12px;
-   margin-top: 20px;
+   justify-content: center;
+   gap: 80px;
+   margin-top: 50px;
+}
+
+.splide__arrows .splide__arrow .c_splide__button-bg {
+   position: relative;
+}
+
+.splide__arrows .splide__arrow .c_splide__button-arrow {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 10;
+}
+
+.splide__arrows .splide__arrow--prev .c_splide__button-arrow {
+   /* 矢印が逆向きになるのを修正 */
+   transform: translate(-50%, -50%) rotate(180deg);
 }
 
 /* ページネーション */
@@ -66,6 +89,7 @@
    position: static;
    margin-top: 24px;
 }
+
 
 .c-pick-up .splide__pagination__page {
    width: 10px;
@@ -87,19 +111,4 @@
    background: #434343;
    transform: scale(1);
    z-index: 1;
-}
-
-.c-pick-up__textarea--wrapper .c-pick-up__textarea--button {
-   text-decoration: none;
-   background: none;
-   border-right: none;
-   border-top: none;
-   border-left: none;
-   /* color: #333333; */
-   border-bottom: 1px solid #333333;
-}
-
-.c-pick-up__textarea--wrapper .c-pick-up__textarea--button a {
-   text-decoration: none;
-   color: #333333;
 }

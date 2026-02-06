@@ -97,10 +97,10 @@
         "padding_bottom": 96
       }
     },
-    "c_pick_up_DrxNwF": {
+    "c_pick_up_wjwzjG": {
       "type": "c_pick-up",
       "blocks": {
-        "image_cJpz9Q": {
+        "image_cy7GVp": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -108,7 +108,7 @@
             "url": "shopify://pages/contact"
           }
         },
-        "image_79kMyM": {
+        "image_iGRNxb": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -116,7 +116,7 @@
             "url": "shopify://pages/contact"
           }
         },
-        "image_VkCA3P": {
+        "image_bHLK6b": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -124,7 +124,7 @@
             "url": "shopify://pages/contact"
           }
         },
-        "image_yFjB9g": {
+        "image_yfJXT9": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -134,22 +134,22 @@
         }
       },
       "block_order": [
-        "image_cJpz9Q",
-        "image_79kMyM",
-        "image_VkCA3P",
-        "image_yFjB9g"
+        "image_cy7GVp",
+        "image_iGRNxb",
+        "image_bHLK6b",
+        "image_yfJXT9"
       ],
       "name": "カスタム：ピックアップ",
       "settings": {
         "title": "Pick up Item",
         "heading_size": "h1",
         "description": "<p>ピックアップ商品から探す</p>",
-        "textarea": "人気商品をアピールしたり、割引やセールの情報を入力する。",
+        "textarea": "テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。\n\nテキストを入力してください。テキストを入力してください。テキストを入力してください。",
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
         "padding-bottom_sp": 64,
-        "color_scheme": "scheme-1"
+        "color_scheme": ""
       }
     },
     "featured_collection_EYCKh6": {
@@ -270,7 +270,7 @@
   "order": [
     "image_banner",
     "image_with_text_TTH8RK",
-    "c_pick_up_DrxNwF",
+    "c_pick_up_wjwzjG",
     "featured_collection_EYCKh6",
     "c_featured_collection_ranking_WXBw6E",
     "featured_blog_gbbArH"
