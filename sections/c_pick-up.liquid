@@ -1,4 +1,27 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'c_pick-up.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- unless section.settings.quick_add == 'none' -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+
+{%- if section.settings.quick_add == 'standard' -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.quick_add == 'bulk' -%}
+  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -12,54 +35,109 @@
       padding-bottom: {{ section.settings.padding-bottom_pc }}px;
     }
   }
-
-  #shopify-section-{{ section.id }} {
-    overflow: hidden;
-  }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} page-width">
-  <div class="c-pick-up">
-    <div class="c-pick-up__textarea--wrapper">
-      <div class="c-section-head c-pick-up__head">
-        {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
-      </div>
-      <div>{{ section.settings.textarea }}</div>
-      <button class="c-pick-up__textarea--button">
-        <a href="">もっと見る</a>
-      </button>
-      <div class="splide__arrows">
-        <button class="splide__arrow splide__arrow--prev">
-          <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Previous" width="20" height="20">
-        </button>
-        <button class="splide__arrow splide__arrow--next">
-          <img src="{{ 'c-icon_splide_arrow.svg' | asset_url }}" alt="Next" width="20" height="20">
-        </button>
-      </div>
+{%- liquid
+  assign products_to_display = section.settings.collection.all_products_count
+
+  if section.settings.collection.all_products_count > section.settings.products_to_show
+    assign products_to_display = section.settings.products_to_show
+    assign more_in_collection = true
+  endif
+
+  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign columns_desktop_int = section.settings.columns_desktop | plus: 0
+  assign show_mobile_slider = false
+  if section.settings.swipe_on_mobile and products_to_display > columns_mobile_int
+    assign show_mobile_slider = true
+  endif
+
+  assign max_columns_to_show = columns_mobile_int
+  if columns_desktop_int > columns_mobile_int
+    assign max_columns_to_show = columns_desktop_int
+  endif
+
+  assign show_desktop_slider = false
+  if section.settings.enable_desktop_slider and products_to_display > section.settings.columns_desktop
+    assign show_desktop_slider = true
+  endif
+-%}
+
+<div
+  class="color-{{ section.settings.color_scheme }} isolate gradient"
+>
+  <div
+    class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    id="collection-{{ section.id }}"
+    data-tab="{{ block.id }}"
+  >
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %} c_section-head">
+      {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
     </div>
 
-    <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
-      <div class="splide__track">
-        <ul class="splide__list">
-          {% for block in section.blocks %}
-            <li class="splide__slide">
-              {% if section.settings.url != blank %}<a href="{{ block.settings.url }}">{% endif %}
-              <picture>
-                {%- if block.settings.image_sp != blank %}
-                  <source srcset="{{ block.settings.image_sp | image_url: width: 800}}" media="(max-width: 750px)">
-                {% endif -%}
-                <img
-                  class="c-image c-pick-up__image"
-                  src="{{ block.settings.image_pc | image_url: width: 1200 }}"
-                  width="1200"
-                  height="600"
-                  alt="block.settings.image_pc.alt"
-                >
-              </picture>
-              {%- if section.settings.url != blank %}</a>{% endif %}
-            </li>
-          {% endfor -%}
-        </ul>
+    <div class="c-pick-up page-width">
+      <div class="c-pick-up__textarea--wrapper">
+        <div class="c-pick-up__text">{{ section.settings.textarea }}</div>
+
+        <div class="splide__arrows">
+          <button class="splide__arrow splide__arrow--prev">
+            <img
+              class="c_splide__button-bg"
+              src="{{ 'c_splide_button_bg.svg' | asset_url }}"
+              alt="Previous_button_background"
+              width="50"
+              height="50"
+            >
+            <img
+              class="c_splide__button-arrow"
+              src="{{ 'c-icon_arrow.svg' | asset_url }}"
+              alt="Previous"
+              width="40"
+              height="40"
+            >
+          </button>
+          <button class="splide__arrow splide__arrow--next">
+            <img
+              class="c_splide__button-bg"
+              src="{{ 'c_splide_button_bg.svg' | asset_url }}"
+              alt="Next_button_background"
+              width="50"
+              height="50"
+            >
+            <img
+              class="c_splide__button-arrow"
+              src="{{ 'c-icon_arrow.svg' | asset_url }}"
+              alt="Next"
+              width="40"
+              height="40"
+            >
+          </button>
+        </div>
+      </div>
+
+      <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for block in section.blocks %}
+              <li class="splide__slide">
+                {% if section.settings.url != blank %}<a href="{{ block.settings.url }}">{% endif %}
+                <picture>
+                  {%- if block.settings.image_sp != blank %}
+                    <source srcset="{{ block.settings.image_sp | image_url: width: 800}}" media="(max-width: 750px)">
+                  {% endif -%}
+                  <img
+                    class="c-image c-pick-up__image"
+                    src="{{ block.settings.image_pc | image_url: width: 1200 }}"
+                    width="1200"
+                    height="600"
+                    alt="block.settings.image_pc.alt"
+                  >
+                </picture>
+                {%- if section.settings.url != blank %}</a>{% endif %}
+              </li>
+            {% endfor -%}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -75,7 +153,7 @@
       perMove: 1,
       focus: 0,
       omitEnd: true,
-      fixedWidth: 300,
+      fixedWidth: 400,
       arrows: false,
       autoplay: false,
       breakpoints: {
@@ -148,21 +226,53 @@
     {% endif %}
   } );
 </script>
+
 {% schema %}
 {
   "name": "カスタム：ピックアップ",
   "settings": [
     {
-      "type": "text",
-      "id": "title",
-      "label": "見出し",
-      "default": "PICK UP PRODUCTS"
+      "type": "header",
+      "content": "t:sections.featured-collection.settings.header_text.content"
     },
     {
-      "type": "text",
-      "id": "sub_title",
-      "label": "サブ見出し",
-      "default": "ピックアップ プロダクト"
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "t:sections.featured-collection.settings.title.default",
+      "label": "t:sections.featured-collection.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:sections.featured-collection.settings.description.label"
     },
     {
       "type": "textarea",

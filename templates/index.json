@@ -69,9 +69,9 @@
         "button_ypqmUa": {
           "type": "button",
           "settings": {
-            "button_label": "ボタンのラベル",
-            "button_link": "",
-            "button_style_secondary": false
+            "button_label": "もっとみる",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": true
           }
         }
       },
@@ -97,10 +97,10 @@
         "padding_bottom": 96
       }
     },
-    "c_pick_up_DrxNwF": {
+    "c_pick_up_wjwzjG": {
       "type": "c_pick-up",
       "blocks": {
-        "image_cJpz9Q": {
+        "image_cy7GVp": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -108,7 +108,7 @@
             "url": "shopify://pages/contact"
           }
         },
-        "image_79kMyM": {
+        "image_iGRNxb": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -116,7 +116,7 @@
             "url": "shopify://pages/contact"
           }
         },
-        "image_VkCA3P": {
+        "image_bHLK6b": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -124,7 +124,7 @@
             "url": "shopify://pages/contact"
           }
         },
-        "image_yFjB9g": {
+        "image_yfJXT9": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/fv_pc.jpg",
@@ -134,21 +134,22 @@
         }
       },
       "block_order": [
-        "image_cJpz9Q",
-        "image_79kMyM",
-        "image_VkCA3P",
-        "image_yFjB9g"
+        "image_cy7GVp",
+        "image_iGRNxb",
+        "image_bHLK6b",
+        "image_yfJXT9"
       ],
       "name": "カスタム：ピックアップ",
       "settings": {
-        "title": "ピックアップ商品",
-        "sub_title": "PICK UP PRODUCTS",
-        "textarea": "人気商品をアピールしたり、割引やセールの情報を入力する。",
+        "title": "Pick up Item",
+        "heading_size": "h1",
+        "description": "<p>ピックアップ商品から探す</p>",
+        "textarea": "テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。\n\nテキストを入力してください。テキストを入力してください。テキストを入力してください。",
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
         "padding-bottom_sp": 64,
-        "color_scheme": "scheme-1"
+        "color_scheme": ""
       }
     },
     "featured_collection_EYCKh6": {
@@ -166,78 +167,80 @@
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "link",
-        "color_scheme": "",
+        "view_all_style": "outline",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding-top_pc": 96,
+        "padding-bottom_pc": 96,
+        "padding-top_sp": 64,
+        "padding-bottom_sp": 0,
+        "color_scheme": ""
       }
     },
-    "c_ranking_collection_KJTErC": {
-      "type": "c_ranking-collection",
+    "c_featured_collection_ranking_WXBw6E": {
+      "type": "c_featured-collection-ranking",
       "blocks": {
-        "collection_LdVjrf": {
+        "collection_FBQy7y": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.collection.title }}",
-            "sub_title": "◻︎{{ block.settings.collection.metafields.custom.sub_title.value }}",
+            "sub_title": "#{{ block.settings.collection.metafields.custom.sub_title.value }}",
             "collection": "standard-line-up",
-            "link": ""
+            "link": "shopify://collections/standard-line-up"
           }
         },
-        "collection_xnpyeH": {
+        "collection_BxTfrm": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.collection.title }}",
-            "sub_title": "◻︎{{ block.settings.collection.metafields.custom.sub_title.value }}",
+            "sub_title": "#{{ block.settings.collection.metafields.custom.sub_title.value }}",
             "collection": "mens",
-            "link": ""
+            "link": "shopify://collections/mens"
           }
         },
-        "collection_jfWL3C": {
+        "collection_NcVg6a": {
           "type": "collection",
           "settings": {
             "title": "{{ block.settings.collection.title }}",
-            "sub_title": "◻︎{{ block.settings.collection.metafields.custom.sub_title.value }}",
+            "sub_title": "#{{ block.settings.collection.metafields.custom.sub_title.value }}",
             "collection": "womens",
-            "link": ""
+            "link": "shopify://collections/womens"
           }
         }
       },
       "block_order": [
-        "collection_LdVjrf",
-        "collection_xnpyeH",
-        "collection_jfWL3C"
+        "collection_FBQy7y",
+        "collection_BxTfrm",
+        "collection_NcVg6a"
       ],
-      "name": "カスタム：ランキングコレクション",
+      "name": "カスタム：ランキング",
       "settings": {
         "products_to_show": 4,
-        "title": "Ranking",
-        "sub_title": "人気商品から探す",
+        "title": "Ranking collection",
         "heading_size": "h1",
-        "description": "",
+        "description": "<p>ランキングから探す</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "outline",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "2",
         "ranking": true,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
@@ -267,9 +270,9 @@
   "order": [
     "image_banner",
     "image_with_text_TTH8RK",
-    "c_pick_up_DrxNwF",
+    "c_pick_up_wjwzjG",
     "featured_collection_EYCKh6",
-    "c_ranking_collection_KJTErC",
+    "c_featured_collection_ranking_WXBw6E",
     "featured_blog_gbbArH"
   ]
 }
