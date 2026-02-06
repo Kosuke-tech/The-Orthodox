@@ -71,7 +71,7 @@
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
     id="collection-{{ section.id }}"
-    data-id="{{ section.id }}"
+    data-tab="{{ block.id }}"
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %} c_section-head">
       {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
@@ -100,65 +100,66 @@
 
     <div class="page-width c-tabs__content">
       {% for block in section.blocks %}
-        <ul
-          class="
-            grid product-grid
-            contains-card
-            contains-card--product {% if settings.card_style == 'standard' %} contains-card--standard{% endif %}
-            grid--{{ section.settings.columns_desktop }}-col-desktop
-            {% comment %} コレクションをblocksに移動したので、管理画面のエディタのサイドバーのモバイルのレイアウトが効くようにクラスを書き換え。ï {% endcomment %}
-            grid--{{ section.settings.columns_mobile }}-col-tablet-down
-            c-tab__panel {% if forloop.first %} is-active {% endif %}
-            c-collection-ranking__list
-          "
-          data-id="{{ block.id }}"
-          role="list"
+        <div
+          class="c-tab__panel {% if forloop.first %} is-active {% endif %}"
+          data-tab="{{ block.id }}"
         >
-          {% assign skip_card_product_styles = false %}
-
-          {%- if block.settings.collection.products.size > 0 -%}
-            {% assign lazy_load = false %}
-            {%- for product in block.settings.collection.products limit: section.settings.products_to_show -%}
-              {% if lazy_load == false and forloop.index > max_columns_to_show %}
-                {% assign lazy_load = true %}
-              {% endif %}
-
-              <li class="grid__item">
-                {% render 'card-product',
-                  card_product: product,
-                  media_aspect_ratio: section.settings.image_ratio,
-                  image_shape: section.settings.image_shape,
-                  lazy_load: lazy_load,
-                  show_secondary_image: section.settings.show_secondary_image,
-                  show_vendor: section.settings.show_vendor,
-                  show_rating: section.settings.show_rating,
-                  skip_styles: skip_card_product_styles,
-                  section_id: section.id,
-                  quick_add: section.settings.quick_add,
-                  ranking: section.settings.ranking,
-                  index: forloop.index
-                %}
-              </li>
-              {%- assign skip_card_product_styles = true -%}
-            {%- endfor -%}
-          {%- endif -%}
-        </ul>
-      {% endfor %}
-
-      {%- if section.settings.show_view_all and more_in_collection -%}
-        <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          <a
-            href="{{ section.settings.collection.url }}"
-            class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
+          <ul
+            class="
+              grid product-grid
+              contains-card
+              contains-card--product {% if settings.card_style == 'standard' %} contains-card--standard{% endif %}
+              grid--{{ section.settings.columns_desktop }}-col-desktop
+              grid--{{ section.settings.columns_mobile }}-col-tablet-down
+              c-collection-ranking__list
+            "
+            role="list"
           >
-            {{ 'sections.featured_collection.view_all' | t }}
-          </a>
+            {% assign skip_card_product_styles = false %}
+
+            {%- if block.settings.collection.products.size > 0 -%}
+              {% assign lazy_load = false %}
+              {%- for product in block.settings.collection.products limit: section.settings.products_to_show -%}
+                {% if lazy_load == false and forloop.index > max_columns_to_show %}
+                  {% assign lazy_load = true %}
+                {% endif %}
+
+                <li class="grid__item">
+                  {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    image_shape: section.settings.image_shape,
+                    lazy_load: lazy_load,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating,
+                    skip_styles: skip_card_product_styles,
+                    section_id: section.id,
+                    quick_add: section.settings.quick_add,
+                    ranking: section.settings.ranking,
+                    index: forloop.index
+                  %}
+                </li>
+                {%- assign skip_card_product_styles = true -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </ul>
+
+          {%- if section.settings.show_view_all
+            and block.settings.collection.all_products_count > section.settings.products_to_show
+          -%}
+            <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              <a
+                href="{{ block.settings.collection.url }}"
+                class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+                aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
+              >
+                {{ 'sections.featured_collection.view_all' | t }}
+              </a>
+            </div>
+          {%- endif -%}
         </div>
-      {%- endif -%}
-      {% if section.settings.image_shape == 'arch' %}
-        {{ 'mask-arch.svg' | inline_asset_content }}
-      {%- endif -%}
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -173,15 +174,16 @@
 
         document
           .querySelectorAll(
-            '#shopify-section-{{ section.id }} .c-tab__button.is-active, #shopify-section-{{ section.id }} .c-tab-panel.is-active',
+            '#shopify-section-{{ section.id }} .c-tab__button.is-active, #shopify-section-{{ section.id }} .c-tab__panel.is-active',
           )
           .forEach((el) => el.classList.remove('is-active'));
 
         tab.classList.add('is-active');
 
         const targetPanel = document.querySelector('.c-tab__panel[data-tab="' + tabId + '"]');
-
-        targetPanel.classList.add('is-active');
+        if (targetPanel) {
+          targetPanel.classList.add('is-active');
+        }
       });
     });
   });

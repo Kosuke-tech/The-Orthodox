@@ -141,8 +141,9 @@
       ],
       "name": "カスタム：ピックアップ",
       "settings": {
-        "title": "ピックアップ商品",
-        "sub_title": "PICK UP PRODUCTS",
+        "title": "Pick up Item",
+        "heading_size": "h1",
+        "description": "<p>ピックアップ商品から探す</p>",
         "textarea": "人気商品をアピールしたり、割引やセールの情報を入力する。",
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
@@ -166,8 +167,7 @@
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "link",
-        "color_scheme": "",
+        "view_all_style": "outline",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
@@ -176,8 +176,11 @@
         "quick_add": "standard",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding-top_pc": 96,
+        "padding-bottom_pc": 96,
+        "padding-top_sp": 64,
+        "padding-bottom_sp": 0,
+        "color_scheme": ""
       }
     },
     "c_featured_collection_ranking_WXBw6E": {
@@ -228,7 +231,7 @@
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "outline",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
