@@ -1,0 +1,211 @@
+/* ==================================================
+  レイアウト
+===================================================*/
+
+
+.c-collection-ranking__list {}
+
+/* ==================================================
+  タブメニュー
+===================================================*/
+
+.c-tabs__nav {
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* max-width: 350px; */
+}
+
+.c-tab__panel {
+    display: none;
+}
+
+.c-tab__panel.is-active {
+    display: flex;
+}
+
+.c-tabs__list::-webkit-scrollbar {
+    display: none;
+}
+
+.c-tabs__list {
+    display: flex;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.c-tab__button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.c-tabs__nav .c-tab__button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #9C9792;
+    transition: border-color 0.3s ease;
+}
+
+@media screen and (max-width: 750px) {
+    .c-tabs__nav .c-tab__button {
+        padding-left: 11px;
+        padding-right: 11px;
+        padding-bottom: 19px;
+    }
+}
+
+.c-tabs__nav .c-tab__title {
+    display: block;
+    color: #9C9792;
+    font-family: var(--font-bodoniModa-family);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0.8px;
+    transition: color 0.3s ease;
+}
+
+@media screen and (max-width: 750px) {
+    .c-tabs__nav .c-tab__title {
+        font-size: 18px;
+        letter-spacing: 0.72px;
+    }
+}
+
+.c-tabs__nav .c-tab__subtitle {
+    display: block;
+    color: #9C9792;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    margin-top: 4px;
+    transition: color 0.3s ease;
+}
+
+@media screen and (max-width: 750px) {
+    .c-tabs__nav .c-tab__subtitle {
+        font-size: 12px;
+    }
+}
+
+.c-tabs__nav .c-tab__button.is-active {
+    border-color: #4882ff;
+}
+
+.c-tabs__nav .c-tab__button.is-active .c-tab-title {
+    color: #282315;
+}
+
+.c-tabs__nav .c-tab__button.is-active .c-tab-subtitle {
+    color: #4C4227;
+}
+
+@media (hover: hover) {
+    .c-tabs__nav .c-tab__button:hover {
+        border-color: #001b56;
+    }
+
+    .c-tabs__nav .c-tab__button:hover .c-tab__title {
+        color: #282315;
+    }
+
+    .c-tabs__nav .c-tab__button:hover .c-tab__subtitle {
+        color: #4C4227;
+    }
+}
+
+
+
+
+/* ------------------------------
+  ランキングセクション
+---------------------------------*/
+
+/* ランキングバッジ */
+
+.c-card__price--ranking {
+    --color-foreground: 40, 35, 21 !important;
+    background: transparent;
+}
+
+@media screen and (max-width: 990px) {
+    .c-card__price--ranking {
+        padding: 0;
+        padding-left: 4px;
+    }
+
+    .c-card__price--ranking .price {
+        font-size: 16px;
+        letter-spacing: 0.64px;
+    }
+}
+
+/* ランキングのナンバー */
+
+.c-card__content {
+    position: relative;
+}
+
+.c-card__badge {
+    /* 幅と高さをsvg画像に合わせた */
+    width: 43px;
+    height: 43px;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+
+}
+
+.c-card__ranking {
+    position: static;
+}
+
+.c-card__ranking svg {
+    position: relative;
+}
+
+
+
+.c-card__ranking-number--1,
+.c-card__ranking-number--2,
+.c-card__ranking-number--3,
+.c-card__ranking-number--4 {
+    display: block;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-family: var(--font-Prata);
+}
+
+.c-card__ranking-number--1 {
+    color: #ffbf00;
+}
+
+.c-card__ranking-number--2 {
+    color: #aeaeae;
+
+}
+
+.c-card__ranking-number--3 {
+    color: #800000;
+}
+
+.c-card__ranking-number--4 {
+    color: #2e2e2e;
+}

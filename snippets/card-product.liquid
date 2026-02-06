@@ -124,28 +124,45 @@
               </a>
             </h3>
           </div>
-          <div class="card__badge {{ settings.badge_position }} c-card__badge">
+          <div class="card__badge {{ settings.badge_position }} {% if ranking %}c-card__badge{% endif %}">
             {% if ranking and index != blank %}
               <span class="c-card__ranking">
                 {% comment %} ランキングバッジを表示 {% endcomment %}
                 {% if index == 1 %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="39" viewBox="0 0 48 39" fill="none">
-                    <path d="M24 0L11.544 20.0542L0 4.71463V39H48V4.71463L36.456 20.0561L24 0ZM24 5.57299L33.792 21.3381L36.205 25.2235L38.9822 21.5319L44.9628 13.5818V29.9869H3.03264V13.5844L9.01392 21.5344L11.7917 25.2262L14.2046 21.3408L24 5.57299ZM3.03264 32.6629H44.9652V36.3306H3.03264V32.6629Z" fill="black"/>
-                  </svg>
-                {% elsif index == 2 or index == 3 %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="48" viewBox="0 0 30 48" fill="none">
-                    <g clip-path="url(#clip0_51_41)">
-                      <path d="M15.9556 1.84841e-08C13.178 9.49529e-05 10.4628 0.822692 8.15336 2.36376C5.84391 3.90483 4.04395 6.09516 2.98106 8.65778C1.91818 11.2204 1.6401 14.0402 2.18202 16.7606C2.72395 19.4811 4.06148 21.9799 6.02556 23.9412C7.98963 25.9025 10.4921 27.2382 13.2163 27.7793C15.9405 28.3204 18.7642 28.0427 21.3304 26.9813C23.8966 25.9198 26.0899 24.1223 27.6331 21.8161C29.1763 19.5098 30 16.7984 30 14.0246C30.0001 12.1829 29.6369 10.3591 28.9311 8.65752C28.2253 6.95593 27.1908 5.40983 25.8866 4.10751C24.5824 2.80519 23.0342 1.77214 21.3302 1.06737C19.6262 0.362605 17.8 -9.45395e-05 15.9556 1.84841e-08ZM8.53815 28.141C8.24851 29.6181 7.7799 31.0546 7.14274 32.4187C4.05155 38.6861 0.156698 40.7513 0 40.8461L4.73939 40.4167L3.37742 44.526L8.79556 42.9819L7.20933 48C12.4457 44.7374 15.1498 41.0916 17.5882 36.7498C18.8725 34.4637 19.7579 31.976 20.2064 29.3933C16.2992 30.4751 12.1259 30.0271 8.53815 28.141Z" fill="black"/>
-                    </g>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_33)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
                     <defs>
-                      <clipPath id="clip0_51_41">
-                        <rect width="30" height="48" fill="white"/>
-                      </clipPath>
+                      <linearGradient id="paint0_linear_64_33" x1="18.4669" y1="-2.3479" x2="18.4669" y2="51.6758" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F7B413"/>
+                        <stop offset="0.684167" stop-color="#A67F21"/>
+                        <stop offset="0.984167" stop-color="#856414"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                {% elsif index == 2 %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_36)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_64_36" x1="18.4669" y1="-2.3479" x2="18.4669" y2="51.6758" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#C1B8AB"/>
+                        <stop offset="0.5" stop-color="#A6A39E"/>
+                        <stop offset="1" stop-color="#79684F"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                {% elsif index == 3 %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_40)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_64_40" x1="18.4669" y1="-2.3479" x2="18.4669" y2="51.6758" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#DA7A26"/>
+                        <stop offset="1" stop-color="#84421B"/>
+                      </linearGradient>
                     </defs>
                   </svg>
                 {% else %}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
-                    <circle cx="15" cy="15" r="15" fill="black"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="#9C9792" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 {% endif %}
                 <span class="c-card__ranking-number c-card__ranking-number--{{ index }}">{{ index }}</span>

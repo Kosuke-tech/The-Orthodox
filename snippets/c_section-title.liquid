@@ -1,7 +1,17 @@
-<h2 class="c-section-title">
-  <img src="{{ 'c-icon_title.svg' | asset_url }}" alt="Previous" width="20" height="20">
-  {{ section.settings.title }}
-</h2>
-<p class="c-section-sub-title">
-  {{ section.settings.sub_title }}
-</p>
+{%- if section.settings.title != blank -%}
+  <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {{ section.settings.title }}
+  </h2>
+{%- endif -%}
+{%- if section.settings.description != blank
+  or section.settings.show_description
+  and section.settings.collection.description != empty
+-%}
+  <div class="collection__description {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {%- if section.settings.show_description -%}
+      {{ section.settings.collection.description }}
+    {%- else -%}
+      {{ section.settings.description -}}
+    {%- endif %}
+  </div>
+{%- endif -%}

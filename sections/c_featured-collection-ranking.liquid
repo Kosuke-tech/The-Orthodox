@@ -1,9 +1,9 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'c_ranking-collection.css' | asset_url | stylesheet_tag }}
 
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'component-slider.css' | asset_url | stylesheet_tag }} {% endcomment %}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'c_featured-collection-ranking.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -65,24 +65,31 @@
   endif
 -%}
 
-<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-  <div class="c-featured-collection page-width">
-    <div class="c_section-head c-featured-collection__head">
+<div
+  class="color-{{ section.settings.color_scheme }} isolate gradient"
+>
+  <div
+    class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
+    id="collection-{{ section.id }}"
+    data-id="{{ section.id }}"
+  >
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %} c_section-head">
       {% render 'c_section-title', title: section.settings.title, sub_title: section.settings.sub_title %}
     </div>
 
-    <nav class="c-tabs-nav c-featured-collection__nav">
-      <ul class="c-tabs-list">
+    {% comment %} js タブメニュー {% endcomment %}
+    <nav class="c-tabs__nav">
+      <ul class="c-tabs__list">
         {% for block in section.blocks %}
           {% if block.settings.title != blank %}
-            <li class="c-tab-item">
+            <li class="c-tab__item">
               <button
                 data-tab="{{ block.id }}"
-                class="c-tab-button {% if forloop.first %} is-active {% endif %}"
+                class="c-tab__button {% if forloop.first %} is-active {% endif %}"
               >
-                <span class="c-tab-title">{{ block.settings.title }}</span>
+                <span class="c-tab__title">{{ block.settings.title }}</span>
                 {% if block.settings.sub_title != blank %}
-                  <span class="c-tab-sub-title">{{ block.settings.sub_title }}</span>
+                  <span class="c-tab__sub-title">{{ block.settings.sub_title }}</span>
                 {% endif %}
               </button>
             </li>
@@ -91,48 +98,74 @@
       </ul>
     </nav>
 
-    <div class="c-tabs-content c-featured-collection__content">
+    <div class="page-width c-tabs__content">
       {% for block in section.blocks %}
         <ul
-          class="c-tab-panel c-featured-collection__list {% if forloop.first %} is-active {% endif %}"
-          data-tab="{{ block.id }}"
+          class="
+            grid product-grid
+            contains-card
+            contains-card--product {% if settings.card_style == 'standard' %} contains-card--standard{% endif %}
+            grid--{{ section.settings.columns_desktop }}-col-desktop
+            {% comment %} コレクションをblocksに移動したので、管理画面のエディタのサイドバーのモバイルのレイアウトが効くようにクラスを書き換え。ï {% endcomment %}
+            grid--{{ section.settings.columns_mobile }}-col-tablet-down
+            c-tab__panel {% if forloop.first %} is-active {% endif %}
+            c-collection-ranking__list
+          "
+          data-id="{{ block.id }}"
+          role="list"
         >
-          {%- for product in block.settings.collection.products limit: section.settings.products_to_show -%}
-            <li
-              class="c-featured-collection-item"
-            >
-              {%- if block.settings.link != blank %}
-                <a href="{{ block.settings.link }}">
-              {%- endif -%}
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: lazy_load,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                skip_styles: skip_card_product_styles,
-                section_id: section.id,
-                quick_add: section.settings.quick_add,
-                ranking: section.settings.ranking,
-                index: forloop.index
-              %}
-              {%- if block.settings.link != blank %}
-                </a>
-              {% endif -%}
-            </li>
-            {%- assign skip_card_product_styles = true -%}
-          {% endfor %}
+          {% assign skip_card_product_styles = false %}
+
+          {%- if block.settings.collection.products.size > 0 -%}
+            {% assign lazy_load = false %}
+            {%- for product in block.settings.collection.products limit: section.settings.products_to_show -%}
+              {% if lazy_load == false and forloop.index > max_columns_to_show %}
+                {% assign lazy_load = true %}
+              {% endif %}
+
+              <li class="grid__item">
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  image_shape: section.settings.image_shape,
+                  lazy_load: lazy_load,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  skip_styles: skip_card_product_styles,
+                  section_id: section.id,
+                  quick_add: section.settings.quick_add,
+                  ranking: section.settings.ranking,
+                  index: forloop.index
+                %}
+              </li>
+              {%- assign skip_card_product_styles = true -%}
+            {%- endfor -%}
+          {%- endif -%}
         </ul>
       {% endfor %}
+
+      {%- if section.settings.show_view_all and more_in_collection -%}
+        <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <a
+            href="{{ section.settings.collection.url }}"
+            class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
+          >
+            {{ 'sections.featured_collection.view_all' | t }}
+          </a>
+        </div>
+      {%- endif -%}
+      {% if section.settings.image_shape == 'arch' %}
+        {{ 'mask-arch.svg' | inline_asset_content }}
+      {%- endif -%}
     </div>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const tabs = document.querySelectorAll('#shopify-section-{{ section.id }} .c-tab-button');
+    const tabs = document.querySelectorAll('#shopify-section-{{ section.id }} .c-tab__button');
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
@@ -140,13 +173,13 @@
 
         document
           .querySelectorAll(
-            '#shopify-section-{{ section.id }} .c-tab-button.is-active, #shopify-section-{{ section.id }} .c-tab-panel.is-active',
+            '#shopify-section-{{ section.id }} .c-tab__button.is-active, #shopify-section-{{ section.id }} .c-tab-panel.is-active',
           )
           .forEach((el) => el.classList.remove('is-active'));
 
         tab.classList.add('is-active');
 
-        const targetPanel = document.querySelector('.c-tab-panel[data-tab="' + tabId + '"]');
+        const targetPanel = document.querySelector('.c-tab__panel[data-tab="' + tabId + '"]');
 
         targetPanel.classList.add('is-active');
       });
@@ -156,8 +189,7 @@
 
 {% schema %}
 {
-  "name": "カスタム：ランキングコレクション",
-  "max_blocks": 3,
+  "name": "カスタム：ランキング",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -178,16 +210,10 @@
       "content": "t:sections.featured-collection.settings.header_text.content"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "title",
-      "label": "見出し",
-      "default": "Ranking"
-    },
-    {
-      "type": "text",
-      "id": "sub_title",
-      "label": "サブ見出し",
-      "default": "人気商品から探す"
+      "default": "t:sections.featured-collection.settings.title.default",
+      "label": "t:sections.featured-collection.settings.title.label"
     },
     {
       "type": "select",
@@ -197,7 +223,6 @@
           "value": "h2",
           "label": "t:sections.all.heading_size.options__1.label"
         },
-
         {
           "value": "h1",
           "label": "t:sections.all.heading_size.options__2.label"
@@ -385,6 +410,12 @@
       "info": "t:sections.featured-collection.settings.show_rating.info"
     },
     {
+      "type": "checkbox",
+      "id": "ranking",
+      "default": true,
+      "label": "ランキングの表示"
+    },
+    {
       "type": "select",
       "id": "quick_add",
       "default": "none",
@@ -426,9 +457,9 @@
     },
     {
       "type": "checkbox",
-      "id": "ranking",
-      "default": true,
-      "label": "ランキングの表示"
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
     },
     {
       "type": "header",
@@ -482,6 +513,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     }
   ],
@@ -505,7 +537,7 @@
         {
           "type": "collection",
           "id": "collection",
-          "label": "コレクション"
+          "label": "t:sections.featured-collection.settings.collection.label"
         },
         {
           "type": "url",
@@ -517,7 +549,7 @@
   ],
   "presets": [
     {
-      "name": "カスタム：ランキングコレクション"
+      "name": "カスタム：ランキング"
     }
   ]
 }

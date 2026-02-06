@@ -5,6 +5,13 @@
  * メモ：テーマのアップデートに備え、base.cssを直接編集せず本ファイルで管理。
  =============================================================================================*/
 
+/* 変数の定義 */
+:root {
+   --font-Prata: 'Prata', 'Times New Roman', serif;
+   --font-playfair: 'Playfair Display', 'Times New Roman', serif;
+}
+
+
 /* 基本の画像比 */
 
 .c-image {
