@@ -12,7 +12,6 @@
 
 .c-pick-up__content {
    position: relative;
-   /* width: calc(100% + (50vw - 50%)); */
    margin-right: calc(50% - 50vw);
    padding-right: 0;
 }
@@ -150,13 +149,11 @@
    z-index: 10;
 }
 
-/* Make sure icon hover is detected reliably */
 .splide__arrows .c_splide__button-bg,
 .splide__arrows .c_splide__button-arrow {
    pointer-events: auto;
 }
 
-/* The animated prompt should not block hover on the arrow icons */
 .splide__arrows .c_splide__click-prompt {
    pointer-events: none;
 }
@@ -166,11 +163,6 @@
    transform: translate(-50%, -50%) rotate(180deg);
 }
 
-/* Click prompt
-   - Desktop (>=1201px): always hidden
-   - Mobile/Tablet (<=1200px): shown + animated
-   Note: use high-specificity + !important to override any generic inline-block rules.
-*/
 @media screen and (min-width: 1201px) {
    body .c-pick-up .splide__arrows>img.c_splide__click-prompt {
       display: none !important;
@@ -241,9 +233,14 @@
    z-index: 1;
 }
 
-/* Safety override: always hide the click prompt on desktop */
 @media screen and (min-width: 1201px) {
    body img.c_splide__click-prompt {
+      display: none !important;
+   }
+}
+
+@media screen and (max-width: 460px) {
+   body .c-pick-up .splide__arrows>img.c_splide__click-prompt {
       display: none !important;
    }
 }

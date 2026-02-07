@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        <div class="splide__track page-width">
+        <div class="splide__track">
           <ul class="splide__list">
             {% for block in section.blocks %}
               <li class="splide__slide c_splide__slide">
@@ -176,8 +176,11 @@
       autoplay: false,
       breakpoints: {
         750: {
-          fixedWidth: '300',
+          fixedWidth: 250,
           gap: 25,
+          padding: {
+            right: 40
+          },
         }
       }
     };
@@ -188,8 +191,8 @@
     const customNext = document.querySelector('.section-{{ section.id }}-padding .splide__arrow--next');
 
     if (customPrev && customNext) {
-      customPrev.addEventListener('click', () => splide.go('<'));
-      customNext.addEventListener('click', () => splide.go('>'));
+      customPrev.addEventListener('click', () => splide.go('-1'));
+      customNext.addEventListener('click', () => splide.go('+1'));
     }
 
     splide.on('overflow', function(isOverflow) {
