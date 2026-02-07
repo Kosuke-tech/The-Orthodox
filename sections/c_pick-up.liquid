@@ -76,51 +76,61 @@
     </div>
 
     <div class="c-pick-up page-width">
-      <div class="c-pick-up__textarea--wrapper">
-        <div class="c-pick-up__text">{{ section.settings.textarea }}</div>
-
-        <div class="splide__arrows">
-          <button class="splide__arrow splide__arrow--prev">
-            <img
-              class="c_splide__button-bg"
-              src="{{ 'c_splide_button_bg.svg' | asset_url }}"
-              alt="Previous_button_background"
-              width="50"
-              height="50"
-            >
-            <img
-              class="c_splide__button-arrow"
-              src="{{ 'c-icon_arrow.svg' | asset_url }}"
-              alt="Previous"
-              width="40"
-              height="40"
-            >
-          </button>
-          <button class="splide__arrow splide__arrow--next">
-            <img
-              class="c_splide__button-bg"
-              src="{{ 'c_splide_button_bg.svg' | asset_url }}"
-              alt="Next_button_background"
-              width="50"
-              height="50"
-            >
-            <img
-              class="c_splide__button-arrow"
-              src="{{ 'c-icon_arrow.svg' | asset_url }}"
-              alt="Next"
-              width="40"
-              height="40"
-            >
-          </button>
-        </div>
-      </div>
-
       <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
-        <div class="splide__track">
+        <div class="c-pick-up__textarea--wrapper">
+          <div class="c-pick-up__richtext">{{ section.settings.richtext }}</div>
+          <div class="c-pick-up__text">{{ section.settings.textarea }}</div>
+
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev">
+              <img
+                class="c_splide__button-bg"
+                src="{{ 'c_splide_button_bg.svg' | asset_url }}"
+                alt="Previous_button_background"
+                width="60"
+                height="60"
+              >
+              <img
+                class="c_splide__button-arrow"
+                src="{{ 'c-icon_arrow.svg' | asset_url }}"
+                alt="Previous"
+                width="40"
+                height="40"
+              >
+            </button>
+            <button class="splide__arrow splide__arrow--next">
+              <img
+                class="c_splide__button-bg"
+                src="{{ 'c_splide_button_bg.svg' | asset_url }}"
+                alt="Next_button_background"
+                width="60"
+                height="60"
+              >
+              <img
+                class="c_splide__button-arrow"
+                src="{{ 'c-icon_arrow.svg' | asset_url }}"
+                alt="Next"
+                width="40"
+                height="40"
+              >
+            </button>
+            <img
+              class="c_splide__click-prompt"
+              src="{{ 'c_click_arrow.svg' | asset_url }}"
+              alt="prompt_a_click_button"
+              width="130"
+              height="40"
+            >
+          </div>
+        </div>
+
+        <div class="splide__track page-width">
           <ul class="splide__list">
             {% for block in section.blocks %}
-              <li class="splide__slide">
-                {% if section.settings.url != blank %}<a href="{{ block.settings.url }}">{% endif %}
+              <li class="splide__slide c_splide__slide">
+                {% if section.settings.url != blank %}
+                  <a href="{{ block.settings.url }}">
+                {% endif %}
                 <picture>
                   {%- if block.settings.image_sp != blank %}
                     <source srcset="{{ block.settings.image_sp | image_url: width: 800}}" media="(max-width: 750px)">
@@ -128,12 +138,14 @@
                   <img
                     class="c-image c-pick-up__image"
                     src="{{ block.settings.image_pc | image_url: width: 1200 }}"
-                    width="1200"
-                    height="600"
+                    width="389"
+                    height="499"
                     alt="block.settings.image_pc.alt"
                   >
                 </picture>
-                {%- if section.settings.url != blank %}</a>{% endif %}
+                {%- if section.settings.url != blank %}
+                  </a>
+                {% endif %}
               </li>
             {% endfor -%}
           </ul>
@@ -149,17 +161,23 @@
     const splideOptions = {
       type: 'loop',
       rewind: true,
-      gap: {{settings.spacing_grid_horizontal}},
+      {% comment %} gap: {{settings.spacing_grid_horizontal}}, {% endcomment %}
       perMove: 1,
       focus: 0,
       omitEnd: true,
-      fixedWidth: 400,
+      fixedWidth: 389,
+      gap: 16,
+      padding:
+      {
+        right: 100
+      },
+      fixedHeight: 499,
       arrows: false,
       autoplay: false,
       breakpoints: {
         750: {
-          fixedWidth: '100%',
-          gap: 0,
+          fixedWidth: '300',
+          gap: 25,
         }
       }
     };
@@ -273,6 +291,11 @@
       "type": "richtext",
       "id": "description",
       "label": "t:sections.featured-collection.settings.description.label"
+    },
+    {
+      "type": "richtext",
+      "id": "richtext",
+      "label": "リッチテキスト"
     },
     {
       "type": "textarea",
