@@ -114,12 +114,20 @@
                 height="40"
               >
             </button>
+            <img
+              class="c_splide__click-prompt"
+              src="{{ 'c_click_arrow.svg' | asset_url }}"
+              alt="prompt_a_click_button"
+              width="130"
+              height="40"
+            >
           </div>
         </div>
-        <div class="splide__track">
+
+        <div class="splide__track page-width">
           <ul class="splide__list">
             {% for block in section.blocks %}
-              <li class="splide__slide">
+              <li class="splide__slide c_splide__slide">
                 {% if section.settings.url != blank %}
                   <a href="{{ block.settings.url }}">
                 {% endif %}
@@ -168,8 +176,8 @@
       autoplay: false,
       breakpoints: {
         750: {
-          fixedWidth: '100%',
-          gap: 0,
+          fixedWidth: '300',
+          gap: 25,
         }
       }
     };

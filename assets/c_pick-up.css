@@ -12,13 +12,22 @@
 
 .c-pick-up__content {
    position: relative;
-   width: calc(100% + (50vw - 50%));
+   /* width: calc(100% + (50vw - 50%)); */
    margin-right: calc(50% - 50vw);
    padding-right: 0;
 }
 
+@media screen and (max-width: 1200px) {
+   .c-pick-up__content {
+      position: static;
+      top: initial;
+      left: initial;
+      display: flex;
+      flex-direction: column;
+   }
+}
+
 .c-pick-up__textarea--wrapper {
-   max-width: 389px;
    width: 389px;
    height: 499px;
    padding-right: 32px;
@@ -30,14 +39,25 @@
    background: #FFFFFF;
 }
 
-.c_splide {
-   position: relative;
+@media screen and (max-width: 1200px) {
+   .c-pick-up__textarea--wrapper {
+      max-width: 800px;
+      width: auto;
+      height: auto;
+      position: static;
+   }
 }
 
 .c-pick-up .splide__track {
-   /* margin-right: 500px; */
    position: relative;
    z-index: 1;
+}
+
+@media screen and (max-width: 1200px) {
+   .c-pick-up .splide__track {
+      margin-top: 30px;
+      height: 400px;
+   }
 }
 
 
@@ -46,20 +66,46 @@
    font-weight: bold;
 }
 
+@media screen and (max-width: 1200px) {
+   .c-pick-up__richtext>p {
+      margin-top: 30px;
+      margin-bottom: 0;
+   }
+}
+
 .c-pick-up__text {
-   margin-top: 30px;
+   margin-top: 10px;
    font-size: 1.25rem;
+}
+
+@media screen and (max-width: 1200px) {
+   .c-pick-up__richtext>p {
+      margin-top: 10px;
+   }
 }
 
 .c-pick-up__image {
    width: 389px;
    height: 499px;
    border-radius: 6px;
+   object-fit: cover;
+}
+
+@media screen and (max-width: 1200px) {
+   .c-pick-up__image {
+      width: 100%;
+      height: 400px;
+   }
+}
+
+@media screen and (max-width: 750px) {
+   .c-pick-up__image {
+      width: 250px;
+   }
 }
 
 /* 矢印 */
 
-/* 矢印のボタン本体を「浮かせない」設定にする */
 .c-pick-up__textarea--wrapper .splide__arrow {
    position: relative !important;
    top: auto !important;
@@ -67,9 +113,14 @@
    right: auto !important;
    transform: none !important;
    margin: 0;
+   width: 60px;
+   height: 60px;
+   padding: 0;
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
 }
 
-/* 矢印の入れ物を横並びにする */
 .c-pick-up__textarea--wrapper .splide__arrows {
    display: flex !important;
    justify-content: center;
@@ -77,6 +128,14 @@
    margin-top: 100px;
    position: relative;
    z-index: 30;
+}
+
+@media screen and (max-width: 1200px) {
+   .c-pick-up__textarea--wrapper .splide__arrows {
+      margin-top: 50px;
+      justify-content: flex-start;
+      padding-left: 5%;
+   }
 }
 
 .splide__arrows .splide__arrow .c_splide__button-bg {
@@ -91,8 +150,66 @@
    z-index: 10;
 }
 
+/* Make sure icon hover is detected reliably */
+.splide__arrows .c_splide__button-bg,
+.splide__arrows .c_splide__button-arrow {
+   pointer-events: auto;
+}
+
+/* The animated prompt should not block hover on the arrow icons */
+.splide__arrows .c_splide__click-prompt {
+   pointer-events: none;
+}
+
+/* Please clickアイコンのアニメーション */
 .splide__arrows .splide__arrow--prev .c_splide__button-arrow {
    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+/* Click prompt
+   - Desktop (>=1201px): always hidden
+   - Mobile/Tablet (<=1200px): shown + animated
+   Note: use high-specificity + !important to override any generic inline-block rules.
+*/
+@media screen and (min-width: 1201px) {
+   body .c-pick-up .splide__arrows>img.c_splide__click-prompt {
+      display: none !important;
+      animation: none !important;
+   }
+}
+
+@media screen and (max-width: 1200px) {
+   body .c-pick-up .splide__arrows>img.c_splide__click-prompt {
+      display: inline-block !important;
+      will-change: transform;
+      animation: c-pick-up-click-prompt-x 1.2s ease-in-out infinite alternate;
+      pointer-events: none;
+   }
+}
+
+@media screen and (max-width: 1200px) {
+   .c-pick-up .splide__arrows .splide__arrow:hover~img.c_splide__click-prompt {
+      display: none !important;
+      animation: none !important;
+   }
+}
+
+@keyframes c-pick-up-click-prompt-x {
+   from {
+      transform: translate3d(-10px, 0, 0);
+      opacity: 1;
+   }
+
+   to {
+      transform: translate3d(15px, 0, 0);
+      opacity: 1;
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   .splide__arrows .c_splide__click-prompt {
+      animation: none !important;
+   }
 }
 
 /* ページネーション */
@@ -101,7 +218,6 @@
    position: static;
    margin-top: 24px;
 }
-
 
 .c-pick-up .splide__pagination__page {
    width: 10px;
@@ -123,4 +239,11 @@
    background: #434343;
    transform: scale(1);
    z-index: 1;
+}
+
+/* Safety override: always hide the click prompt on desktop */
+@media screen and (min-width: 1201px) {
+   body img.c_splide__click-prompt {
+      display: none !important;
+   }
 }
