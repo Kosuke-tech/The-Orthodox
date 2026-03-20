@@ -79,7 +79,7 @@
       <div class="splide c_splide c-pick-up__content splide-{{ section.id }}">
         <div class="c-pick-up__textarea--wrapper">
           <div class="c-pick-up__richtext">{{ section.settings.richtext }}</div>
-          <div class="c-pick-up__text">{{ section.settings.textarea }}</div>
+          <div class="c-pick-up__text">{{ section.settings.textarea | newline_to_br }}</div>
 
           <div class="splide__arrows">
             <button class="splide__arrow splide__arrow--prev">

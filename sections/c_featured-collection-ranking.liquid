@@ -137,7 +137,8 @@
                     section_id: section.id,
                     quick_add: section.settings.quick_add,
                     ranking: section.settings.ranking,
-                    index: forloop.index
+                    index: forloop.index,
+                    badge_position: section.settings.badge_position
                   %}
                 </li>
                 {%- assign skip_card_product_styles = true -%}
@@ -436,6 +437,30 @@
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "バッジの表示位置"
+    },
+    {
+      "type": "select",
+      "id": "badge_position",
+      "label": "バッジの表示位置",
+      "options": [
+        {
+          "value": "top-right",
+          "label": "右上"
+        },
+        {
+          "value": "bottom-right",
+          "label": "右下"
+        },
+        {
+          "value": "bottom-left",
+          "label": "左下"
+        }
+      ],
+      "default": "bottom-left"
     },
     {
       "type": "header",
