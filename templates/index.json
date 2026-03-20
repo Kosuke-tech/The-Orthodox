@@ -62,7 +62,7 @@
         "text_kjVk6e": {
           "type": "text",
           "settings": {
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
+            "text": "<p>毎日服着る服だからシンプルで良質なものがいい。<br/>服をシンプルにすると朝の服選びが格段に楽になる。</p>",
             "text_style": "body"
           }
         },
@@ -103,7 +103,7 @@
         "image_cy7GVp": {
           "type": "image",
           "settings": {
-            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_pc": "shopify://shop_images/Rectangle9.png",
             "image_sp": "shopify://shop_images/fv_sp.jpg",
             "url": "shopify://pages/contact"
           }
@@ -111,7 +111,7 @@
         "image_iGRNxb": {
           "type": "image",
           "settings": {
-            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_pc": "shopify://shop_images/Rectangle_17.jpg",
             "image_sp": "shopify://shop_images/fv_sp.jpg",
             "url": "shopify://pages/contact"
           }
@@ -119,7 +119,7 @@
         "image_bHLK6b": {
           "type": "image",
           "settings": {
-            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_pc": "shopify://shop_images/Rectangle23.jpg",
             "image_sp": "shopify://shop_images/fv_sp.jpg",
             "url": "shopify://pages/contact"
           }
@@ -127,7 +127,7 @@
         "image_yfJXT9": {
           "type": "image",
           "settings": {
-            "image_pc": "shopify://shop_images/fv_pc.jpg",
+            "image_pc": "shopify://shop_images/Rectangle15.png",
             "image_sp": "shopify://shop_images/fv_sp.jpg",
             "url": "shopify://pages/contact"
           }
@@ -145,7 +145,7 @@
         "heading_size": "h1",
         "description": "<p>ピックアップ商品から探す</p>",
         "richtext": "<p>UP to 50%</p>",
-        "textarea": "テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。\n\nテキストを入力してください。テキストを入力してください。テキストを入力してください。",
+        "textarea": "私たちが提案するのは、流行に左右されず長く愛用できる「本物」の一着です。厳選された素材と、計算されたシルエット。袖を通すたびに感じる心地よさを、ぜひあなたの肌で体験してください。\n人気の定番アイテムから最新トレンドまで、最大50%OFFの特別価格でご案内。",
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
@@ -240,6 +240,7 @@
         "show_rating": false,
         "ranking": true,
         "quick_add": "standard",
+        "badge_position": "top-right",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding-top_pc": 96,
@@ -255,7 +256,7 @@
       "settings": {
         "blog": "shop",
         "post_limit": 3,
-        "heading": "ブログ記事",
+        "heading": "店舗情報",
         "heading_size": "h1",
         "columns_desktop": 3,
         "show_view_all": true,

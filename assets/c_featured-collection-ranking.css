@@ -119,6 +119,33 @@
     }
 }
 
+/* ------------------------------
+  バッジの表示位置
+---------------------------------*/
+
+.c-card-wrapper .c-card__inner {
+    position: relative;
+}
+
+.c-card-ranking-collection-badge__position {
+    position: absolute;
+}
+
+.c-card-ranking-collection-badge__position--bottom-left {
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.c-card-ranking-collection-badge__position--bottom-right {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.c-card-ranking-collection-badge__position--top-right {
+    top: 1rem;
+    right: 1rem;
+}
+
 
 
 

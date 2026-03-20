@@ -40,7 +40,7 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover {% if  ranking %} c-card-wrapper--ranking {% endif %}">
+  <div class="card-wrapper c-card-wrapper product-card-wrapper underline-links-hover {% if  ranking %} c-card-wrapper--ranking {% endif %}">
     <div
       class="
         card card--{{ settings.card_style }}
@@ -125,9 +125,9 @@
             </h3>
           </div>
           <div class="card__badge {{ settings.badge_position }} {% if ranking %}c-card__badge{% endif %}">
+            {% comment %}  {% endcomment %}
             {% if ranking and index != blank %}
               <span class="c-card__ranking">
-                {% comment %} ランキングバッジを表示 {% endcomment %}
                 {% if index == 1 %}
                   <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
                     <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_33)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -165,26 +165,25 @@
                     <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="#9C9792" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 {% endif %}
-                <span class="c-card__ranking-number c-card__ranking-number--{{ index }}">{{ index }}</span>
-            {% else %}
+                <span class="c-card__ranking-number c-card__ranking-number--{{ index }}"> {{ index }}</span>
               </span>
-              {% comment %} 標準のバッジを表示 {% endcomment %}
-              {%- if card_product.available == false -%}
-                <span
-                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-                >
-                  {{- 'products.product.sold_out' | t -}}
-                </span>
-              {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-                <span
-                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-                >
-                  {{- 'products.product.on_sale' | t -}}
-                </span>
-              {%- endif -%}
             {% endif %}
+            {% comment %} 標準のバッジを表示 {% endcomment %}
+            {%- if card_product.available == false -%}
+              <span
+                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }} c-badge__position c-card-badge__position--{{ badge_position }}"
+              >
+                {{- 'products.product.sold_out' | t -}}
+              </span>
+            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+              <span
+                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }} c-badge__position c-badge__position--{{ badge_position }}"
+              >
+                {{- 'products.product.on_sale' | t -}}
+              </span>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -593,7 +592,16 @@
             </div>
           {% endif %}
         {% endif %}
-        <div class="card__badge {{ settings.badge_position }}">
+        <div
+          class="
+            card__badge
+            c-card-featured-collection-badge__position
+            c-card-featured-collection-badge__position--{{ badge_position }}
+            c-card-ranking-collection-badge__position
+            c-card-ranking-collection-badge__position--{{ badge_position }}
+            {{ settings.badge_position }}
+          "
+        >
           {%- if card_product.available == false -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
