@@ -40,7 +40,7 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper c-featured-card-wrapper product-card-wrapper underline-links-hover {% if  ranking %} c-card-wrapper--ranking {% endif %}">
+  <div class="card-wrapper c-card-wrapper product-card-wrapper underline-links-hover {% if  ranking %} c-card-wrapper--ranking {% endif %}">
     <div
       class="
         card card--{{ settings.card_style }}
@@ -54,7 +54,7 @@
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
       <div
-        class="card__inner c-card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+        class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if card_product.featured_media -%}
@@ -127,36 +127,79 @@
           <div
             class="
               card__badge
-              c-card-featured-collection-badge__position--{{ badge_position }}
-              {% comment %} {{ settings.badge_position }}  {% endcomment %}
-               {% if ranking %}c-card__badge{% endif %}
+              {% comment %} {{ settings.badge_position }} {% endcomment %}
+                {% if ranking %}c-card__badge{% endif %}
             "
           >
-            {% comment %} 標準のバッジを表示 {% endcomment %}
-            {%- if card_product.available == false -%}
-              <span
-                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                class="
-                  badge badge--bottom-left
-                  color-{{ settings.sold_out_badge_color_scheme }}
-                  c-badge__position
-                "
-              >
-                {{- 'products.product.sold_out' | t -}}
+            {% if ranking and index != blank %}
+              <span class="c-card__ranking">
+                {% if index == 1 %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_33)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_64_33" x1="18.4669" y1="-2.3479" x2="18.4669" y2="51.6758" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F7B413"/>
+                        <stop offset="0.684167" stop-color="#A67F21"/>
+                        <stop offset="0.984167" stop-color="#856414"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                {% elsif index == 2 %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_36)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_64_36" x1="18.4669" y1="-2.3479" x2="18.4669" y2="51.6758" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#C1B8AB"/>
+                        <stop offset="0.5" stop-color="#A6A39E"/>
+                        <stop offset="1" stop-color="#79684F"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                {% elsif index == 3 %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="url(#paint0_linear_64_40)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_64_40" x1="18.4669" y1="-2.3479" x2="18.4669" y2="51.6758" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#DA7A26"/>
+                        <stop offset="1" stop-color="#84421B"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                {% else %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
+                    <circle cx="21.0998" cy="21.0998" r="20.8" fill="#FFFBF7" stroke="#9C9792" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {% endif %}
+                <span class="c-card__ranking-number c-card__ranking-number--{{ index }}"> {{ index }}</span>
               </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <span
-                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                class="
-                  badge badge--bottom-left
-                  color-{{ settings.sale_badge_color_scheme }}
-                  c-badge__position
-                "
-              >
-                {{- 'products.product.on_sale' | t -}}
-              </span>
-            {%- endif -%}
+            {% endif %}
           </div>
+          {% comment %} 標準のバッジを表示 {% endcomment %}
+          {%- if card_product.available == false -%}
+            <span
+              id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+              class="
+                badge badge--bottom-left
+                color-{{ settings.sold_out_badge_color_scheme }}
+                c-badge__position
+                c-card-ranking-collection-badge__position--{{ badge_position }}
+              "
+            >
+              {{- 'products.product.sold_out' | t -}}
+            </span>
+          {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+            <span
+              id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+              class="
+                badge badge--bottom-left
+                color-{{ settings.sale_badge_color_scheme }}
+                c-badge__position
+                c-card-ranking-collection-badge__position--{{ badge_position }}
+              "
+            >
+              {{- 'products.product.on_sale' | t -}}
+            </span>
+          {%- endif -%}
         </div>
       </div>
       <div class="card__content c-card__content">
@@ -567,7 +610,7 @@
         <div
           class="
             card__badge
-            c-card-featured-collection-badge__position--{{ badge_position }}
+            c-card-ranking-collection-badge__position--{{ badge_position }}
             {% comment %} {{ settings.badge_position }} {% endcomment %}
           "
         >
@@ -581,7 +624,11 @@
           {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
-              class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+              class="
+                badge badge--bottom-left
+                color-{{ settings.sale_badge_color_scheme }}
+              "
+              c-card-ranking-collection-badge__position--{{ badge_position }}
             >
               {{- 'products.product.on_sale' | t -}}
             </span>
@@ -609,7 +656,7 @@
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
       <div
-        class="card__inner c-card__inner {% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
+        class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
       >
         <div
           class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"

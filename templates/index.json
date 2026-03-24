@@ -16,7 +16,8 @@
           "type": "heading",
           "settings": {
             "heading": "やっぱり、シンプルがいい。",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "heading_size_mobile": "h4"
           }
         },
         "button": {
@@ -25,7 +26,7 @@
             "button_label_1": "全商品を見る",
             "button_link_1": "shopify://collections/all",
             "button_style_secondary_1": true,
-            "button_label_2": "おすすめの商品を見る",
+            "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
           }
@@ -36,7 +37,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/fv_pc.jpg",
+        "image": "shopify://shop_images/fv_pc_5f663179-72ff-429b-95a8-d0c4266e3d7a.jpg",
         "image_overlay_opacity": 20,
         "image_height": "large",
         "image_behavior": "none",
@@ -56,7 +57,7 @@
           "type": "heading",
           "settings": {
             "heading": "シンプルな服と生活。",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_kjVk6e": {
@@ -69,7 +70,7 @@
         "button_ypqmUa": {
           "type": "button",
           "settings": {
-            "button_label": "もっとみる",
+            "button_label": "全ての商品を見る",
             "button_link": "shopify://pages/contact",
             "button_style_secondary": true
           }
@@ -82,9 +83,9 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/fv_sp.jpg",
-        "height": "adapt",
-        "desktop_image_width": "small",
+        "image": "shopify://shop_images/Gemini_Generated_Image_1y00r71y00r71y00_1_1fc618ac-7804-433a-b647-a527c5ddec51.png",
+        "height": "medium",
+        "desktop_image_width": "medium",
         "layout": "image_first",
         "image_behavior": "zoom-in",
         "content_layout": "no-overlap",
@@ -100,55 +101,82 @@
     "c_pick_up_wjwzjG": {
       "type": "c_pick-up",
       "blocks": {
+        "image_K6qexA": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/Rectangle69.png",
+            "image_sp": "shopify://shop_images/Rectangle69.png",
+            "url": "shopify://products/the-orthodox-mens-court"
+          }
+        },
+        "image_ENwfRL": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/Rectangle61.png",
+            "image_sp": "shopify://shop_images/Rectangle61.png",
+            "url": "shopify://products/the-orthodox-mens-outer"
+          }
+        },
+        "image_8yKJAr": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/Rectangle73.png",
+            "image_sp": "shopify://shop_images/Rectangle73.png",
+            "url": "shopify://products/the-orthodox-mens-heavy-outer"
+          }
+        },
         "image_cy7GVp": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/Rectangle9.png",
-            "image_sp": "shopify://shop_images/fv_sp.jpg",
-            "url": "shopify://pages/contact"
-          }
-        },
-        "image_iGRNxb": {
-          "type": "image",
-          "settings": {
-            "image_pc": "shopify://shop_images/Rectangle_17.jpg",
-            "image_sp": "shopify://shop_images/fv_sp.jpg",
-            "url": "shopify://pages/contact"
+            "image_sp": "shopify://shop_images/Rectangle9.png",
+            "url": "shopify://products/the-orthodox-zip-parker"
           }
         },
         "image_bHLK6b": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/Rectangle23.jpg",
-            "image_sp": "shopify://shop_images/fv_sp.jpg",
-            "url": "shopify://pages/contact"
+            "image_sp": "shopify://shop_images/Rectangle23.jpg",
+            "url": "shopify://products/the-orthodox-knit-hat"
+          }
+        },
+        "image_iGRNxb": {
+          "type": "image",
+          "settings": {
+            "image_pc": "shopify://shop_images/Rectangle_17.jpg",
+            "image_sp": "shopify://shop_images/Rectangle_17.jpg",
+            "url": "shopify://products/the-collection-snowboard-liquid"
           }
         },
         "image_yfJXT9": {
           "type": "image",
           "settings": {
             "image_pc": "shopify://shop_images/Rectangle15.png",
-            "image_sp": "shopify://shop_images/fv_sp.jpg",
-            "url": "shopify://pages/contact"
+            "image_sp": "shopify://shop_images/Rectangle15.png",
+            "url": "shopify://products/the-orthodox-long-tee"
           }
         }
       },
       "block_order": [
+        "image_K6qexA",
+        "image_ENwfRL",
+        "image_8yKJAr",
         "image_cy7GVp",
-        "image_iGRNxb",
         "image_bHLK6b",
+        "image_iGRNxb",
         "image_yfJXT9"
       ],
       "name": "カスタム：ピックアップ",
       "settings": {
-        "title": "Pick up Item",
+        "title": "PICK UP",
         "heading_size": "h1",
         "description": "<p>ピックアップ商品から探す</p>",
         "richtext": "<p>UP to 50%</p>",
         "textarea": "私たちが提案するのは、流行に左右されず長く愛用できる「本物」の一着です。厳選された素材と、計算されたシルエット。袖を通すたびに感じる心地よさを、ぜひあなたの肌で体験してください。\n人気の定番アイテムから最新トレンドまで、最大50%OFFの特別価格でご案内。",
-        "padding-top_pc": 96,
+        "padding-top_pc": 0,
         "padding-bottom_pc": 96,
-        "padding-top_sp": 64,
+        "padding-top_sp": 0,
         "padding-bottom_sp": 64,
         "color_scheme": ""
       }
@@ -159,7 +187,7 @@
       "settings": {
         "collection": "standard-line-up",
         "products_to_show": 4,
-        "title": "Featured collection",
+        "title": "FEATURED COLLECTION",
         "heading_size": "h1",
         "description": "<p>特集コレクション</p>",
         "show_description": false,
@@ -171,16 +199,17 @@
         "view_all_style": "outline",
         "image_ratio": "square",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "standard",
+        "badge_position": "bottom-left",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding-top_pc": 96,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
-        "padding-bottom_sp": 0,
+        "padding-bottom_sp": 64,
         "color_scheme": ""
       }
     },
@@ -223,7 +252,7 @@
       "name": "カスタム：ランキング",
       "settings": {
         "products_to_show": 4,
-        "title": "Ranking collection",
+        "title": "RANKING COLLECTION",
         "heading_size": "h1",
         "description": "<p>ランキングから探す</p>",
         "show_description": false,
@@ -235,15 +264,15 @@
         "view_all_style": "outline",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "ranking": true,
         "quick_add": "standard",
-        "badge_position": "top-right",
+        "badge_position": "bottom-left",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding-top_pc": 96,
+        "padding-top_pc": 0,
         "padding-bottom_pc": 96,
         "padding-top_sp": 64,
         "padding-bottom_sp": 64,
@@ -252,11 +281,11 @@
     },
     "featured_blog_gbbArH": {
       "type": "featured-blog",
-      "name": "t:sections.featured-blog.presets.name",
+      "name": "店舗情報（ブログ機能で作成）",
       "settings": {
         "blog": "shop",
         "post_limit": 3,
-        "heading": "店舗情報",
+        "heading": "STORE",
         "heading_size": "h1",
         "columns_desktop": 3,
         "show_view_all": true,
@@ -265,7 +294,7 @@
         "show_author": false,
         "color_scheme": "",
         "padding_top": 96,
-        "padding_bottom": 36
+        "padding_bottom": 96
       }
     }
   },

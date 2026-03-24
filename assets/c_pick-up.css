@@ -97,12 +97,6 @@
    }
 }
 
-@media screen and (max-width: 750px) {
-   .c-pick-up__image {
-      width: 250px;
-   }
-}
-
 /* 矢印 */
 
 .c-pick-up__textarea--wrapper .splide__arrow {

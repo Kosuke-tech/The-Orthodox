@@ -3,6 +3,7 @@
 
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'c_featured-collection.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -121,7 +122,8 @@
                   show_rating: section.settings.show_rating,
                   skip_styles: skip_card_product_styles,
                   section_id: section.id,
-                  quick_add: section.settings.quick_add
+                  quick_add: section.settings.quick_add,
+                  badge_position: section.settings.badge_position
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -454,6 +456,34 @@
           "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "バッジの表示位置"
+    },
+    {
+      "type": "select",
+      "id": "badge_position",
+      "label": "バッジの表示位置",
+      "options": [
+        {
+          "value": "top-right",
+          "label": "右上"
+        },
+        {
+          "value": "bottom-right",
+          "label": "右下"
+        },
+        {
+          "value": "top-left",
+          "label": "左上"
+        },
+        {
+          "value": "bottom-left",
+          "label": "左下"
+        }
+      ],
+      "default": "bottom-left"
     },
     {
       "type": "header",
