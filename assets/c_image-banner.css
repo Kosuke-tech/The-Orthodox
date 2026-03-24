@@ -1,0 +1,21 @@
+@media (max-width: 750px) {
+    .c-banner__content .heading--mobile-h5 {
+        font-size: 1.4rem;
+    }
+
+    .c-banner__content .heading--mobile-h4 {
+        font-size: 1.8rem;
+    }
+
+    .c-banner__content .heading--mobile-h3 {
+        font-size: 2.2rem;
+    }
+
+    .c-banner__content .heading--mobile-h2 {
+        font-size: 2.8rem;
+    }
+
+    .c-banner__content .heading--mobile-h1 {
+        font-size: 3.4rem;
+    }
+}

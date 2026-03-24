@@ -92,9 +92,9 @@
               {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
                 <p class="article-card__excerpt rte-width">
                   {%- if article.excerpt.size > 0 -%}
-                    {{ article.excerpt | strip_html | truncatewords: 30 }}
+                    {{ article.excerpt | strip_html | truncatewords: 30 | newline_to_br }}
                   {%- else -%}
-                    {{ article.content | strip_html | truncatewords: 30 }}
+                    {{ article.content | strip_html | truncatewords: 30 | newline_to_br }}
                   {%- endif -%}
                 </p>
               {%- endif -%}
@@ -119,11 +119,11 @@
               {{ article.title | truncate: 50 | escape }}
             </a>
             {% comment %} メタオブジェクトの表示 {% endcomment %}
-            {%- if article.metafields.custom.shinzyuku.value != blank -%}
-              {%- assign shop = article.metafields.custom.shinzyuku.value -%}
+            {%- if article.metafields.custom['store-infomation'].value != blank -%}
+              {%- assign shop = article.metafields.custom['store-infomation'].value -%}
               <div class="c-card__shop-info" style="font-size: 0.6em; line-height: 1.5;">
-                <p>TEL: {{ shop.tel }}</p>
-                <p>住所: {{ shop.address | newline_to_br }}</p>
+                <p>TEL: {{ shop['store-tell'] }}</p>
+                <p>住所: {{ shop['store-address'] | newline_to_br }}</p>
               </div>
             {%- endif -%}
           </h3>
@@ -139,9 +139,9 @@
             {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
               <p class="article-card__excerpt rte-width">
                 {%- if article.excerpt.size > 0 -%}
-                  {{ article.excerpt | strip_html | truncatewords: 30 }}
+                  {{ article.excerpt | strip_html | truncatewords: 30 | newline_to_br }}
                 {%- else -%}
-                  {{ article.content | strip_html | truncatewords: 30 }}
+                  {{ article.content | strip_html | truncatewords: 30 | newline_to_br }}
                 {%- endif -%}
               </p>
             {%- endif -%}
